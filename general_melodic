@@ -1,0 +1,41 @@
+from osrf/ros:melodic-desktop-full
+
+# change the default shell to bash
+SHELL [ "/bin/bash", "-c" ]
+
+# install git
+RUN apt-get update && apt-get install -y \
+  git \
+  tmux \
+  python-pip \
+  ros-melodic-joy \
+  ros-melodic-teleop-twist-joy \
+  ros-melodic-teleop-twist-keyboard \
+  ros-melodic-laser-proc \
+  ros-melodic-rgbd-launch \
+  ros-melodic-depthimage-to-laserscan \
+  ros-melodic-rosserial-arduino \
+  ros-melodic-rosserial-python \
+  ros-melodic-rosserial-server \
+  ros-melodic-rosserial-client \
+  ros-melodic-rosserial-msgs \
+  ros-melodic-amcl \
+  ros-melodic-map-server \
+  ros-melodic-move-base \
+  ros-melodic-urdf \
+  ros-melodic-robot-pose-ekf \
+  ros-melodic-xacro \
+  ros-melodic-compressed-image-transport \
+  ros-melodic-rqt* \
+  ros-melodic-gmapping \
+  ros-melodic-navigation \
+  ros-melodic-interactive-markers \
+  ros-melodic-controller-interface \
+  ros-melodic-gazebo-ros-control \
+  ros-melodic-joint-state-controller \ 
+  ros-melodic-effort-controllers \
+  ros-melodic-joint-trajectory-controller
+
+# Pip installs
+RUN pip install  \
+  websocket-client
