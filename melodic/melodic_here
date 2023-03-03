@@ -33,6 +33,7 @@ docker run -it \
   --env="XAUTHORITY=$XAUTH" \
   --env="ROS_MASTER_URI=http://$IP:11311" \
   --env="ROS_HOSTNAME=$IP" \
+  --env="GAZEBO_MASTER_URI=http://$IP:11345" \
   --volume="$XAUTH:$XAUTH" \
   --volume="${PWD}/":"/external:rw" \
   general_melodic bash
