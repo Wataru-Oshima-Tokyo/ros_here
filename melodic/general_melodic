@@ -35,10 +35,16 @@ RUN apt-get update && apt-get install -y \
   ros-melodic-joint-state-controller \ 
   ros-melodic-effort-controllers \
   ros-melodic-joint-trajectory-controller \ 
+  ros-melodic-robot-localization \
+  ros-melodic-turtlebot3-msgs \
+  ros-melodic-turtlebot3 \
   liblcm-dev \
   gazebo9 \
-  libgazebo9-dev
+  libgazebo9-dev 
 
 # Pip installs
 RUN pip install  \
   websocket-client
+
+# Env setup
+RUN echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
