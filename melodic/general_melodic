@@ -35,7 +35,9 @@ RUN apt-get update && apt-get install -y \
   ros-melodic-joint-state-controller \ 
   ros-melodic-effort-controllers \
   ros-melodic-joint-trajectory-controller \ 
-  liblcm-dev
+  liblcm-dev \
+  gazebo9 \
+  libgazebo9-dev
 
 # Pip installs
 RUN pip install  \
