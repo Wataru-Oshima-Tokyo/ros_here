@@ -4,10 +4,8 @@ LABEL maintainer="Tiryoh<tiryoh@gmail.com>"
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update -q && \
-    apt-get install -y apt-utils &&\
-    apt-get upgrade -yq && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends wget curl git build-essential vim sudo lsb-release locales bash-completion tzdata gosu terminator && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y apt-utils
+    
 RUN rm /etc/apt/apt.conf.d/docker-clean
 
 
