@@ -27,7 +27,7 @@ RUN apt-get update -q && \
     iputils-ping\
     git \
     tmux \
-    python3-pip \
+    python3-pip && \
     rosdep init && \
     rm -rf /var/lib/apt/lists/* 
 
