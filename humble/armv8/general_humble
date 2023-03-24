@@ -23,26 +23,22 @@ RUN apt-get update -q && \
     python3-argcomplete \
     python3-colcon-common-extensions \
     python3-rosdep python3-vcstool && \
+    net-tools \
+    iputils-ping\
+    git \
+    tmux \
+    python3-pip \
+    ros-humble-joy \
+    ros-humble-teleop-twist-joy \
+    ros-humble-teleop-twist-keyboard \
+    ros-humble-laser-proc \
+    ros-humble-ros-ign-bridge \
+    ros-humble-turtlebot3-msgs \
+    ros-humble-turtlebot3 \
+    ros-humble-rqt* \
+    ros-humble-controller-interface \
+    ros-humble-effort-controllers \
+    ros-humble-joint-trajectory-controller \ 
+    ros-humble-robot-localization \
     rosdep init && \
     rm -rf /var/lib/apt/lists/* 
-
-# install git
-RUN apt-get update && apt-get install -y \
-  net-tools \
-  iputils-ping\
-  git \
-  tmux \
-  python3-pip \
-  gazebo\
-  ros-humble-joy \
-  ros-humble-teleop-twist-joy \
-  ros-humble-teleop-twist-keyboard \
-  ros-humble-laser-proc \
-  ros-humble-ros-ign-bridge \
-  ros-humble-turtlebot3-msgs \
-  ros-humble-turtlebot3 \
-  ros-humble-rqt* \
-  ros-humble-controller-interface \
-  ros-humble-effort-controllers \
-  ros-humble-joint-trajectory-controller \ 
-  ros-humble-robot-localization 
