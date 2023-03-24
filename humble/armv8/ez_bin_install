@@ -1,0 +1,7 @@
+echo "Creating [~/.bin] This will be where executables are installed for ros_here"
+mkdir -p ~/.bin
+cp humble_here ~/.bin
+echo "Adding ~/.bin to bashrc if needed."
+grep -qxF 'export PATH=$PATH:/home/'$USER/.bin ~/.bashrc  || echo 'export PATH=$PATH:/home/'$USER/.bin >> ~/.bashrc
+echo "Creating [~/.ros_here_persist/humble_ws] this is where global persistant storage will be"
+mkdir -p ~/.ros_here_persist/humble_ws
