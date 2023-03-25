@@ -43,4 +43,4 @@ RUN apt-get update -q && \
     ros-humble-controller-interface \
     ros-humble-effort-controllers \
     ros-humble-joint-trajectory-controller \ 
-    ros-humble-robot-localization \
+    ros-humble-robot-localization 
