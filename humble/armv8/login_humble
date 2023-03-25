@@ -1,1 +1,1 @@
-docker exec -it humble /bin/bash && cd /external/
+docker exec -it humble /bin/bash -c "cd /external; exec bash"
