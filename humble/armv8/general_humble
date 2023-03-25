@@ -49,6 +49,8 @@ RUN apt-get update -q && \
 RUN python3 -m pip install  \
   websocket-client catmux
 
+RUN apt-get update && \
+    apt install -y gazebo
 # Env setup + turtlebot simulation
 RUN echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc && \
     echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc && \
