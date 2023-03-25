@@ -51,9 +51,9 @@ RUN python3 -m pip install  \
 
 # Env setup + turtlebot simulation
 RUN echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc && \
-  echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc && \
-  mkdir -p /tb3_ws/src && \
-  cd /tb3_ws/src && \
-  git clone -b humble-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git && \
-  cd .. && source /opt/ros/humble/setup.bash && colcon build && \
-  echo "source /tb3_ws/devel/setup.bash" >> ~/.bashrc &&
+    echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc && \
+    mkdir -p /tb3_ws/src && \
+    cd /tb3_ws/src && \
+    git clone -b humble-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git && \
+    cd .. && source /opt/ros/humble/setup.bash && colcon build && \
+    echo "source /tb3_ws/devel/setup.bash" >> ~/.bashrc
