@@ -1,0 +1,38 @@
+from osrf/ros:humble-desktop-full
+
+# change the default shell to bash
+SHELL [ "/bin/bash", "-c" ]
+
+# install git
+RUN apt-get update && apt-get install -y \
+  net-tools \
+  iputils-ping\
+  git \
+  tmux \
+  python3-pip \
+  gazebo\
+  ros-humble-joy \
+  ros-humble-teleop-twist-joy \
+  ros-humble-teleop-twist-keyboard \
+  ros-humble-laser-proc \
+  ros-humble-ros-ign-bridge \
+  ros-humble-gazebo-ros-pkgs \
+  ros-humble-turtlebot3-msgs \
+  ros-humble-turtlebot3 \
+  ros-humble-rqt* \
+  ros-humble-controller-interface \
+  ros-humble-effort-controllers \
+  ros-humble-joint-trajectory-controller \ 
+  ros-humble-robot-localization 
+
+
+# Pip installs
+RUN pip install  \
+  websocket-client catmux
+
+# Env setup + turtlebot simulation
+RUN echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc && \
+  mkdir -p /tb3_ws/src && \
+  cd /tb3_ws/src && \
+  git clone -b humble-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git && \
+  cd .. && source /opt/ros/humble/setup.bash && colcon build

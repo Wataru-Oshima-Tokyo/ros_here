@@ -5,6 +5,8 @@ SHELL [ "/bin/bash", "-c" ]
 
 # install git
 RUN apt-get update && apt-get install -y \
+  net-tools \
+  iputils-ping\
   git \
   tmux \
   python-pip \
@@ -46,5 +48,9 @@ RUN apt-get update && apt-get install -y \
 RUN pip install  \
   websocket-client
 
-# Env setup
-RUN echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
+# Env setup + turtlebot simulation
+RUN echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc && \
+  mkdir -p /tb3_ws/src && \
+  cd /tb3_ws/src && \
+  git clone -b melodic-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git && \
+  cd .. && source /opt/ros/melodic/setup.bash && catkin_make

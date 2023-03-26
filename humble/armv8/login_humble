@@ -1,0 +1,7 @@
+while [ -z "$(docker ps -aqf "name=humble")" ]; do
+    sleep 0.1;
+done;
+until [ "`docker inspect -f {{.State.Running}} humble`"=="true" ]; do
+    sleep 0.1;
+done;
+docker exec -it humble /bin/bash -c "cd /external; exec bash"

@@ -1,10 +1,17 @@
 #!/bin/bash
 
 IP="$1"
+DOMAIN_ID="$2"
 if [ -z "$1" ]
     then
         echo "No argument given, If an IP is required, please provide it as an argument. Using [localhost] for this run."
         IP="localhost"
+fi
+
+if [ -z "$2" ]
+    then
+        echo "No argument given, Assume that ROS_DOMAIN_ID is 1"
+        DOMAIN_ID=1
 fi
 
 xhost +local:root 
@@ -27,18 +34,19 @@ docker run -it \
   --rm \
   --privileged \
   --net=host \
+  --name=humble \
+  --runtime=nvidia \
   --env="DISPLAY=$DISPLAY" \
   --env="QT_X11_NO_MITSHM=1" \
   --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
   --env="XAUTHORITY=$XAUTH" \
-  --env="ROS_MASTER_URI=http://$IP:11311" \
   --env="ROS_HOSTNAME=$IP" \
+  --env="ROS_DOMAIN_ID=$DOMAIN_ID" \
   --env="GAZEBO_MASTER_URI=http://$IP:11345" \
   --volume="$XAUTH:$XAUTH" \
   --volume="${PWD}/":"/external:rw" \
-  --volume="/home/$USER/.ros_here_persist/melodic_ws":"/global_ws:rw" \
-  general_melodic bash
-
+  --volume="/home/$USER/.ros_here_persist/humble_ws":"/global_ws:rw" \
+  general_humble bash 
 
 # NOTE: Remember to: Sync clocks/timezones with host and pi
 # NOTE: Remember to: set master and host on both host and pi
