@@ -26,6 +26,8 @@ RUN apt-get install -y net-tools \
     iputils-ping\
     git \
     tmux \
+    vim \
+    nano \
     python3-pip && \
     python3 -m pip install transforms3d \
     rosdep init && \
@@ -49,12 +51,8 @@ RUN apt-get update -q && \
 RUN python3 -m pip install  \
   websocket-client catmux
 
-RUN apt-get update -q && \
-    apt-get install -y \
-    vim \
-    nano 
-
-
 # Env setup + turtlebot simulation
 RUN echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc && \
     echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc 
+
+ENTRYPOINT [ "cd /external" ]
