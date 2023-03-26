@@ -49,8 +49,8 @@ RUN apt-get update -q && \
 RUN python3 -m pip install  \
   websocket-client catmux
 
-RUN apt-get update && \
-    apt-get install \
+RUN apt-get update -q && \
+    apt-get install -y \
     vim \
     nano 
 
