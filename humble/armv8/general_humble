@@ -55,4 +55,4 @@ RUN python3 -m pip install  \
 RUN echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc && \
     echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc 
 
-ENTRYPOINT [ "cd /external" ]
+ENTRYPOINT [ "cd /" ]
