@@ -54,5 +54,3 @@ RUN python3 -m pip install  \
 # Env setup + turtlebot simulation
 RUN echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc && \
     echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc 
-
-ENTRYPOINT [ "source ~/.bashrc" ]
