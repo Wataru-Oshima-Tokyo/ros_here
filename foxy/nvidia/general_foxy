@@ -30,71 +30,71 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libtiff-dev \
     libdc1394-22-dev
 
-# Add NVIDIA package repositories
-RUN curl -sL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/arm64/3bf863cc.pub | gpg --dearmor -o /etc/apt/trusted.gpg.d/nvidia.gpg && \
-    echo "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/arm64 /" > /etc/apt/sources.list.d/nvidia-cuda.list && \
-    echo "deb https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/arm64 /" > /etc/apt/sources.list.d/nvidia-ml.list
+# # Add NVIDIA package repositories
+# RUN curl -sL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/arm64/3bf863cc.pub | gpg --dearmor -o /etc/apt/trusted.gpg.d/nvidia.gpg && \
+#     echo "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/arm64 /" > /etc/apt/sources.list.d/nvidia-cuda.list && \
+#     echo "deb https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/arm64 /" > /etc/apt/sources.list.d/nvidia-ml.list
 
 
-# Set up ROS package repository
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl -sSL http://packages.ros.org/ros.key | apt-key add - && \
-    echo "deb http://packages.ros.org/ros2/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros2-latest.list
+# # Set up ROS package repository
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     curl -sSL http://packages.ros.org/ros.key | apt-key add - && \
+#     echo "deb http://packages.ros.org/ros2/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros2-latest.list
 
 
-# Install JetPack SDK components
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    cuda-toolkit-11-4 \
-    libcudnn8 \
-    libnvinfer8 \
-    libnvparsers8 \
-    libnvonnxparsers8 \
-    libnvinfer-plugin8 \
-    libnvinfer-dev \
-    libnvparsers-dev \
-    libnvonnxparsers-dev \
-    libnvinfer-plugin-dev \
-    libnvjpcge-dev \
-    libnvrtc-dev \
-    libnvtoolsext-dev
+# # Install JetPack SDK components
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     cuda-toolkit-11-4 \
+#     libcudnn8 \
+#     libnvinfer8 \
+#     libnvparsers8 \
+#     libnvonnxparsers8 \
+#     libnvinfer-plugin8 \
+#     libnvinfer-dev \
+#     libnvparsers-dev \
+#     libnvonnxparsers-dev \
+#     libnvinfer-plugin-dev \
+#     libnvjpcge-dev \
+#     libnvrtc-dev \
+#     libnvtoolsext-dev
 
-# Clone the OpenCV and OpenCV-contrib repositories, and build OpenCV
-RUN git clone https://github.com/opencv/opencv.git && \
-    git clone https://github.com/opencv/opencv_contrib.git && \
-    cd opencv && \
-    mkdir build && \
-    cd build && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE \
-          -D CMAKE_INSTALL_PREFIX=/usr/local \
-          -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-          -D WITH_CUDA=ON \
-          -D WITH_CUDNN=ON \
-          -D OPENCV_DNN_CUDA=ON \
-          -D ENABLE_FAST_MATH=1 \
-          -D CUDA_FAST_MATH=1 \
-          -D CUDA_ARCH_BIN=7.5 \
-          -D WITH_CUBLAS=1 \
-          -D WITH_TBB=ON \
-          -D WITH_V4L=ON \
-          -D WITH_QT=OFF \
-          -D WITH_OPENGL=ON \
-          -D BUILD_EXAMPLES=OFF \
-          -D BUILD_DOCS=OFF \
-          -D BUILD_PERF_TESTS=OFF \
-          -D BUILD_TESTS=OFF \
-          -D BUILD_opencv_python2=OFF \
-          -D BUILD_opencv_python3=ON \
-          .. && \
-    make -j$(nproc) && \
-    make install && \
-    ldconfig
+# # Clone the OpenCV and OpenCV-contrib repositories, and build OpenCV
+# RUN git clone https://github.com/opencv/opencv.git && \
+#     git clone https://github.com/opencv/opencv_contrib.git && \
+#     cd opencv && \
+#     mkdir build && \
+#     cd build && \
+#     cmake -D CMAKE_BUILD_TYPE=RELEASE \
+#           -D CMAKE_INSTALL_PREFIX=/usr/local \
+#           -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+#           -D WITH_CUDA=ON \
+#           -D WITH_CUDNN=ON \
+#           -D OPENCV_DNN_CUDA=ON \
+#           -D ENABLE_FAST_MATH=1 \
+#           -D CUDA_FAST_MATH=1 \
+#           -D CUDA_ARCH_BIN=7.5 \
+#           -D WITH_CUBLAS=1 \
+#           -D WITH_TBB=ON \
+#           -D WITH_V4L=ON \
+#           -D WITH_QT=OFF \
+#           -D WITH_OPENGL=ON \
+#           -D BUILD_EXAMPLES=OFF \
+#           -D BUILD_DOCS=OFF \
+#           -D BUILD_PERF_TESTS=OFF \
+#           -D BUILD_TESTS=OFF \
+#           -D BUILD_opencv_python2=OFF \
+#           -D BUILD_opencv_python3=ON \
+#           .. && \
+#     make -j$(nproc) && \
+#     make install && \
+#     ldconfig
 
-# Cleanup
-RUN cd ../../ && \
-    rm -rf opencv opencv_contrib && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# # Cleanup
+# RUN cd ../../ && \
+#     rm -rf opencv opencv_contrib && \
+#     apt-get clean && \
+#     rm -rf /var/lib/apt/lists/*
 
-# Install ROS Foxy packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-foxy-desktop
+# # Install ROS Foxy packages
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     ros-foxy-desktop
