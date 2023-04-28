@@ -43,7 +43,7 @@ docker run -it \
   --env="GAZEBO_MASTER_URI=http://$IP:11345" \
   --volume="$XAUTH:$XAUTH" \
   --volume="${PWD}/":"/external:rw" \
-  --volume="/home/$USER/.ros_here_persist/humble_ws":"/global_ws:rw" \
+  --volume="/home/$USER/.ros_here_persist/humble_ws/":"/global_ws:rw" \
   general_humble bash
 
 

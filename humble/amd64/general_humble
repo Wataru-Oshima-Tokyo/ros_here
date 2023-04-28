@@ -28,7 +28,9 @@ RUN apt-get update && apt-get install -y \
 
 # Pip installs
 RUN pip install  \
-  websocket-client catmux
+  websocket-client catmux numpy
+
+RUN sudo pip3 install transforms3d
 
 # Env setup + turtlebot simulation
 RUN echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc && \
