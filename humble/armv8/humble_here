@@ -47,7 +47,7 @@ docker run -it \
   --volume="$XAUTH:$XAUTH" \
   --volume="${PWD}/":"/external:rw" \
   --volume="/home/$USER/.ros_here_persist/humble_ws":"/global_ws:rw" \
-  general_humble bash
+  general_humble bash 
 
 # NOTE: Remember to: Sync clocks/timezones with host and pi
 # NOTE: Remember to: set master and host on both host and pi
