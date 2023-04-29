@@ -34,6 +34,7 @@ docker run -it \
   --rm \
   --privileged \
   --net=host \
+  --user=root\
   --name=humble \
   --runtime=nvidia \
   --env="DISPLAY=$DISPLAY" \

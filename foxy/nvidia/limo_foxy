@@ -50,6 +50,7 @@ RUN apt-get install -y net-tools \
     tmux \
     vim \
     nano \
+    build-essential \
     python3-pip && \
     python3 -m pip install transforms3d \
     rosdep init && \
@@ -57,21 +58,31 @@ RUN apt-get install -y net-tools \
 
 RUN apt-get update -q && \
     apt-get install -y \
-    ros-humble-tf-transformations \
-    ros-humble-turtlebot3 \
-    ros-humble-turtlebot3-msgs \
-    ros-humble-gazebo-msgs \
-    ros-humble-laser-proc \
-    ros-humble-ros-ign-bridge \
-    ros-humble-rqt* \
-    ros-humble-controller-interface \
-    ros-humble-effort-controllers \
-    ros-humble-joint-trajectory-controller \ 
-    ros-humble-robot-localization 
+    ros-foxy-tf-transformations \
+    ros-foxy-turtlebot3 \
+    ros-foxy-turtlebot3-msgs \
+    ros-foxy-gazebo-msgs \
+    ros-foxy-laser-proc \
+    ros-foxy-ros-ign-bridge \
+    ros-foxy-rqt* \
+    ros-foxy-controller-interface \
+    ros-foxy-effort-controllers \
+    ros-foxy-joint-trajectory-controller \ 
+    ros-foxy-robot-localization 
 
 
 RUN python3 -m pip install  \
   websocket-client catmux numpy
+
+#From here, packages only limo_foxy needs
+RUN cd / && \
+    git clone https://github.com/YDLIDAR/YDLidar-SDK.git && \
+    cd YDLidar-SDK && \
+    mkdir build && cd build &&\
+    cmake .. && make && make install
+
+
+
 
 
 # source ROS
