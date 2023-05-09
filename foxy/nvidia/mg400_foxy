@@ -71,7 +71,8 @@ RUN apt-get update && \
     rosdep init && \
     rm -rf /var/lib/apt/lists/* 
 
-RUN source /opt/ros/foxy/setup.bash 
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
+RUN source /root/.bashrc
 # RUN source /opt/ros/foxy/setup.bash && \
 #     cd / && \
 #     mkdir -p mg400_ws/src && cd mg400_ws/src && \
@@ -83,5 +84,5 @@ RUN source /opt/ros/foxy/setup.bash
 
 
 # source ROS
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
+
 CMD ["bash"]
