@@ -1,0 +1,61 @@
+from arm64v8/ros:humble
+
+# change the default shell to bash
+SHELL [ "/bin/bash", "-c" ]
+
+# install git
+RUN apt-get update && apt-get install -y \
+  net-tools \
+  iputils-ping\
+  git \
+  tmux \
+  python3-pip \
+  gazebo\
+  ros-humble-joy \
+  ros-humble-teleop-twist-joy \
+  ros-humble-teleop-twist-keyboard \
+  ros-humble-laser-proc \
+  ros-humble-ros-ign-bridge \
+  ros-humble-gazebo-ros-pkgs \
+  ros-humble-turtlebot3-msgs \
+  ros-humble-turtlebot3 \
+  ros-humble-rqt* \
+  ros-humble-controller-interface \
+  ros-humble-effort-controllers \
+  ros-humble-joint-trajectory-controller \ 
+  ros-humble-robot-localization 
+
+
+# Pip installs
+RUN pip install  \
+  websocket-client catmux numpy transforms3d
+
+RUN apt-get update && \
+    apt-get install -y net-tools \
+    iputils-ping\
+    git \
+    tmux \
+    vim \
+    nano \
+    nlohmann-json3-dev \
+    python3-pip && \
+    python3 -m pip install transforms3d websocket-client catmux numpy \
+    rosdep init && \
+    rm -rf /var/lib/apt/lists/* 
+
+
+# RUN source /root/.bashrc
+RUN cd / && \
+    mkdir -p mg400_ws/src && cd mg400_ws/src && \
+    git clone -b humble https://github.com/TechShare-inc/MG400_ROS2.git && \
+    git clone -b humble https://github.com/TechShare-inc/PlayStation-JoyInterface-ROS2.git && \
+    git clone -b humble https://github.com/TechShare-inc/h6x_tf_manager.git && \
+    /bin/bash -c 'source /opt/ros/foxy/setup.bash && \
+    cd /mg400_ws && \
+    colcon build --symlink-install' \
+    && echo "source /mg400_ws/install/setup.bash" >> /root/.bashrc
+
+
+# source ROS
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
+CMD ["bash"]
