@@ -1,0 +1,32 @@
+from amd64/ros:foxy
+
+# change the default shell to bash
+SHELL [ "/bin/bash", "-c" ]
+
+# # install git
+RUN apt-get update && apt-get install -y \
+  net-tools \
+  iputils-ping\
+  git \
+  tmux \
+  python3-pip 
+#   ros-foxy-joy \
+#   ros-foxy-teleop-twist-joy \
+#   ros-foxy-teleop-twist-keyboard \
+#   ros-foxy-laser-proc \
+#   ros-foxy-ros-ign-bridge \
+#   ros-foxy-gazebo-ros-pkgs \
+#   ros-foxy-turtlebot3-msgs \
+#   ros-foxy-turtlebot3 \
+#   ros-foxy-rqt* \
+#   ros-foxy-controller-interface \
+#   ros-foxy-effort-controllers \
+#   ros-foxy-joint-trajectory-controller \ 
+#   ros-foxy-robot-localization 
+
+
+# Pip installs
+RUN pip install  \
+  websocket-client catmux numpy transforms3d
+
+
