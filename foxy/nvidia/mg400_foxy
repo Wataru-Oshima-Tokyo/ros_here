@@ -82,7 +82,7 @@ RUN apt update && apt install \
     git clone -b foxy https://github.com/TechShare-inc/PlayStation-JoyInterface-ROS2.git && \
     git clone -b foxy https://github.com/TechShare-inc/h6x_tf_manager.git && \
     cd .. && colcon build --symlink-install \
-    echo "source /mg400_ws/install/setup.bash" >> /root/.bashrc
+    && echo "source /mg400_ws/install/setup.bash" >> /root/.bashrc
 
 
 # source ROS
