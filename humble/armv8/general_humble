@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
   ros-humble-teleop-twist-keyboard \
   ros-humble-laser-proc \
   ros-humble-ros-ign-bridge \
-  ros-humble-gazebo-ros-pkgs \
   ros-humble-turtlebot3-msgs \
   ros-humble-turtlebot3 \
   ros-humble-rqt* \
