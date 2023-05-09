@@ -72,8 +72,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* 
 
 
-RUN source /opt/ros/foxy/setup.bash \
-    && cd / && \
+RUN source /opt/ros/foxy/setup.bash && \
+    cd / && \
     mkdir -p mg400_ws/src && cd mg400_ws/src && \
     git clone -b foxy https://github.com/TechShare-inc/MG400_ROS2.git && \
     git clone -b foxy https://github.com/TechShare-inc/PlayStation-JoyInterface-ROS2.git && \
