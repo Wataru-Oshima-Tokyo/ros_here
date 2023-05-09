@@ -30,6 +30,18 @@ then
     chmod a+r $XAUTH
 fi
 
+# Check if the network 'mg400_network' exists
+network_exists=$(docker network ls --filter name=mg400_network -q)
+
+# If the network does not exist, create it
+if [ -z "$network_exists" ]; then
+    echo "Creating network 'mg400_network'"
+    docker network create --subnet 192.168.1.0/24 mg400_network
+else
+    echo "Network 'mg400_network' already exists"
+fi
+
+
 docker run -it \
   --rm \
   --privileged \
