@@ -72,7 +72,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* 
 
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
-RUN source /root/.bashrc
+# RUN source /root/.bashrc
 # RUN source /opt/ros/foxy/setup.bash && \
 #     cd / && \
 #     mkdir -p mg400_ws/src && cd mg400_ws/src && \
