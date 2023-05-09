@@ -71,18 +71,19 @@ RUN apt-get update && \
     rosdep init && \
     rm -rf /var/lib/apt/lists/* 
 
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
+
 # RUN source /root/.bashrc
-# RUN source /opt/ros/foxy/setup.bash && \
-#     cd / && \
-#     mkdir -p mg400_ws/src && cd mg400_ws/src && \
-#     git clone -b foxy https://github.com/TechShare-inc/MG400_ROS2.git && \
-#     git clone -b foxy https://github.com/TechShare-inc/PlayStation-JoyInterface-ROS2.git && \
-#     git clone -b foxy https://github.com/TechShare-inc/h6x_tf_manager.git && \
-#     cd .. && colcon build --symlink-install \
-#     && echo "source /mg400_ws/install/setup.bash" >> /root/.bashrc
+RUN cd / && \
+    mkdir -p mg400_ws/src && cd mg400_ws/src && \
+    git clone -b foxy https://github.com/TechShare-inc/MG400_ROS2.git && \
+    git clone -b foxy https://github.com/TechShare-inc/PlayStation-JoyInterface-ROS2.git && \
+    git clone -b foxy https://github.com/TechShare-inc/h6x_tf_manager.git && \
+    /bin/bash -c 'source /opt/ros/foxy/setup.bash && \
+    cd /mg400_ws && \
+    colcon build --symlink-install' \
+    && echo "source /mg400_ws/install/setup.bash" >> /root/.bashrc
 
 
 # source ROS
-
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
 CMD ["bash"]
