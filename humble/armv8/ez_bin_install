@@ -2,8 +2,19 @@ echo "Creating [~/.bin] This will be where executables are installed for ros_her
 mkdir -p ~/.bin
 cp humble_here ~/.bin
 cp login_humble ~/.bin
-cp no_host_humble_here ~/.bin
+cp mg400_humble_here ~/.bin
 echo "Adding ~/.bin to bashrc if needed."
 grep -qxF 'export PATH=$PATH:/home/'$USER/.bin ~/.bashrc  || echo 'export PATH=$PATH:/home/'$USER/.bin >> ~/.bashrc
 echo "Creating [~/.ros_here_persist/humble_ws] this is where global persistant storage will be"
 mkdir -p ~/.ros_here_persist/humble_ws
+# Check if the network 'mg400_network' exists
+network_exists=$(docker network ls --filter name=mg400_network -q)
+
+# If the network does not exist, create it
+if [ -z "$network_exists" ]; then
+    echo "Creating network 'mg400_network'"
+    docker network create --subnet 192.168.1.0/24 mg400_network
+else
+    echo "Network 'mg400_network' already exists"
+fi
+

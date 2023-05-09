@@ -34,6 +34,7 @@ docker run -it \
   --rm \
   --privileged \
   --user=root\
+  --net=mg400_network \
   --name=humble \
   --runtime=nvidia \
   --env="DISPLAY=$DISPLAY" \
