@@ -84,7 +84,9 @@ RUN cd / && \
     colcon build --symlink-install' \
     && echo "source /mg400_ws/install/setup.bash" >> /root/.bashrc
 
-
+RUN apt-get update && apt-get install \
+    network-manager
+ 
 # source ROS
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
 CMD ["bash"]
