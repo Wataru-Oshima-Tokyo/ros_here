@@ -29,4 +29,8 @@ RUN apt-get update && apt-get install -y \
 RUN pip install  \
   websocket-client catmux numpy transforms3d
 
+RUN apt-get update && apt-get install -y\
+    qt5-default 
+
+
 
