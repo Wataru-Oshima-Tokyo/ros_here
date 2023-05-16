@@ -76,7 +76,7 @@ RUN apt-get update && \
 # RUN source /root/.bashrc
 RUN cd / && \
     mkdir -p mg400_ws/src && cd mg400_ws/src && \
-    git clone -b foxy https://github.com/TechShare-inc/MG400_ROS2.git && \
+    git clone -b foxy-dev https://github.com/TechShare-inc/MG400_ROS2.git && \
     git clone -b foxy https://github.com/TechShare-inc/PlayStation-JoyInterface-ROS2.git && \
     git clone -b foxy https://github.com/TechShare-inc/h6x_tf_manager.git && \
     /bin/bash -c 'source /opt/ros/foxy/setup.bash && \
