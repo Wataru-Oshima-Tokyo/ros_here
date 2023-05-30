@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
   git \
   tmux \
   python3-pip \
-  gazebo\
   ros-humble-joy \
   ros-humble-teleop-twist-joy \
   ros-humble-teleop-twist-keyboard \
