@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -y \
   ros-melodic-turtlebot3 \
   liblcm-dev \
   gazebo9 \
-  libgazebo9-dev 
+  libgazebo9-dev  
 
 # Pip installs
 RUN pip install  \
@@ -54,3 +54,8 @@ RUN echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc && \
   cd /tb3_ws/src && \
   git clone -b melodic-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git && \
   cd .. && source /opt/ros/melodic/setup.bash && catkin_make
+
+RUN apt-get update && apt-get install -y \
+  python-catkin-tools \
+  ros-melodic-moveit* 
+  
